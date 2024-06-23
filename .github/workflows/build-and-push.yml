@@ -5,9 +5,15 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      # checkout the repo
       - name: "Checkout GitHub Action"
         uses: actions/checkout@main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npm build
+               
 
       - name: "Login via Azure CLI"
         uses: azure/login@v1
